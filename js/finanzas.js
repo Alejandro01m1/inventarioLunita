@@ -19,23 +19,11 @@ formFinanzas.addEventListener("submit", async (e)=>{
 
 e.preventDefault();
 
-/* INPUTS */
-
-const dineroInput =
-document.getElementById("dineroDeben");
-
-const envioInput =
-document.getElementById("envio");
-
-/* VALORES */
-
 const dineroDeben =
-Number(dineroInput.value || 0);
+Number(document.getElementById("dineroDeben").value || 0);
 
 const envio =
-Number(envioInput.value || 0);
-
-/* GUARDAR */
+Number(document.getElementById("envio").value || 0);
 
 await addDoc(collection(db,"finanzas"),{
 
@@ -44,17 +32,16 @@ envio
 
 });
 
-/* RECARGAR */
-
 location.reload();
 
 });
 
 /* =========================
-TOTAL VENDIDO
+VENTAS E INVERSION
 ========================= */
 
 let totalVendido = 0;
+let totalInvertido = 0;
 
 const articulosSnapshot =
 await getDocs(collection(db,"articulos"));
@@ -66,10 +53,13 @@ const articulo = doc.data();
 totalVendido +=
 Number(articulo.ingresos || 0);
 
+totalInvertido +=
+Number(articulo.costoTotal || 0);
+
 });
 
 /* =========================
-DINERO PENDIENTE + ENVIO
+ENVIOS Y DEUDAS
 ========================= */
 
 let totalDeben = 0;
@@ -109,22 +99,27 @@ Number(gasto.valorGasto || 0);
 });
 
 /* =========================
-DINERO REAL
+GANANCIA REAL
 ========================= */
 
 const dineroReal =
 totalVendido
+- totalInvertido
 - totalEnvio
 - totalGastos
 - totalDeben;
 
 /* =========================
-MOSTRAR DATOS
+MOSTRAR
 ========================= */
 
 document.getElementById("totalVendido")
 .innerText =
 "$" + totalVendido;
+
+document.getElementById("totalInvertido")
+.innerText =
+"$" + totalInvertido;
 
 document.getElementById("gastosEnvio")
 .innerText =

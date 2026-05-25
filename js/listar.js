@@ -9,17 +9,60 @@ doc
 
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
+/* =========================
+TABLA
+========================= */
+
 const tabla =
 document.getElementById("tablaArticulos");
+
+/* =========================
+OBTENER DATOS
+========================= */
 
 const querySnapshot =
 await getDocs(collection(db, "articulos"));
 
+/* =========================
+ARRAY
+========================= */
+
+const articulos = [];
+
+querySnapshot.forEach((documento)=>{
+
+articulos.push({
+
+id: documento.id,
+...documento.data()
+
+});
+
+});
+
+/* =========================
+ORDENAR
+========================= */
+
+articulos.sort((a,b)=>{
+
+return a.id.localeCompare(b.id);
+
+});
+
+/* =========================
+MOSTRAR
+========================= */
+
 let contador = 1;
 
-querySnapshot.forEach((documento) => {
+articulos.forEach((a)=>{
 
-const a = documento.data();
+const estadoClase =
+
+a.estado === "Hay unidades"
+? "estadoDisponible"
+: "estadoNoDisponible";
 
 tabla.innerHTML += `
 
@@ -45,11 +88,7 @@ tabla.innerHTML += `
 
 <td>
 
-<span class="${
-a.estado === 'Hay unidades'
-? 'estadoDisponible'
-: 'estadoNoDisponible'
-}">
+<span class="${estadoClase}">
 
 ${a.estado}
 
@@ -61,7 +100,7 @@ ${a.estado}
 
 <div class="acciones">
 
-<a href="editarArticulo.html?id=${documento.id}">
+<a href="editarArticulo.html?id=${a.id}">
 
 <button class="btnEditar">
 
@@ -72,7 +111,7 @@ Editar
 </a>
 
 <button class="btnEliminar"
-onclick="eliminarArticulo('${documento.id}')">
+onclick="eliminarArticulo('${a.id}')">
 
 Eliminar
 
@@ -90,14 +129,18 @@ contador++;
 
 });
 
-window.eliminarArticulo = async (id) => {
+/* =========================
+ELIMINAR
+========================= */
+
+window.eliminarArticulo = async (id)=>{
 
 const confirmar =
 confirm("¿Eliminar artículo?");
 
 if(confirmar){
 
-await deleteDoc(doc(db, "articulos", id));
+await deleteDoc(doc(db,"articulos",id));
 
 location.reload();
 
