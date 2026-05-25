@@ -22,6 +22,8 @@
 
 <div class="container">
 
+<!-- TOP -->
+
 <div class="topFinanzas">
 
 <h1>Finanzas</h1>
@@ -35,20 +37,17 @@
 
 </div>
 
+<!-- FORMULARIO -->
+
 <div class="formFinanzas">
 
+<h2 style="margin-bottom:20px;">
+
+Registrar Información Financiera
+
+</h2>
+
 <form id="formFinanzas">
-
-<div class="grupo">
-
-<label>Gastos de envío</label>
-
-<input type="number"
-       id="gastosEnvio"
-       step="0.01"
-       required>
-
-</div>
 
 <div class="grupo">
 
@@ -56,7 +55,16 @@
 
 <input type="number"
        id="dineroDeben"
-       step="0.01"
+       required>
+
+</div>
+
+<div class="grupo">
+
+<label>Gastos de envío</label>
+
+<input type="number"
+       id="envio"
        required>
 
 </div>
@@ -72,7 +80,11 @@ Guardar Información
 
 </div>
 
+<!-- CARDS -->
+
 <div class="finanzasGrid">
+
+<!-- TOTAL VENDIDO -->
 
 <div class="finanzaCard">
 
@@ -91,22 +103,45 @@ $0
 
 </div>
 
+<!-- GASTOS ENVIO -->
+
 <div class="finanzaCard">
 
 <div class="finanzaTitulo">
 
-🚚 Gastos de Envío
+🚚 Gastos Envío
 
 </div>
 
 <div class="finanzaValor"
-     id="totalEnvios">
+     id="gastosEnvio">
 
 $0
 
 </div>
 
 </div>
+
+<!-- OTROS GASTOS -->
+
+<div class="finanzaCard">
+
+<div class="finanzaTitulo">
+
+💸 Otros Gastos
+
+</div>
+
+<div class="finanzaValor"
+     id="totalGastos">
+
+$0
+
+</div>
+
+</div>
+
+<!-- DINERO PENDIENTE -->
 
 <div class="finanzaCard">
 
@@ -124,6 +159,8 @@ $0
 </div>
 
 </div>
+
+<!-- DINERO REAL -->
 
 <div class="finanzaCard realCard">
 

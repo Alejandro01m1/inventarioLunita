@@ -1,3 +1,6 @@
+
+
+
 .topFinanzas{
 
 display:flex;
@@ -14,7 +17,7 @@ flex-wrap:wrap;
 
 }
 
-/* FORMULARIO */
+/* FORMULARIOS */
 
 .formFinanzas{
 
@@ -48,7 +51,7 @@ color:#ff2e93;
 
 }
 
-/* CARDS */
+/* GRID CARDS */
 
 .finanzasGrid{
 
@@ -58,7 +61,11 @@ grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 
 gap:25px;
 
+margin-top:30px;
+
 }
+
+/* CARDS */
 
 .finanzaCard{
 
@@ -72,13 +79,39 @@ box-shadow:0 8px 25px rgba(255,79,163,0.15);
 
 transition:0.3s;
 
+position:relative;
+
+overflow:hidden;
+
 }
 
 .finanzaCard:hover{
 
-transform:translateY(-5px);
+transform:translateY(-6px);
 
 }
+
+/* LINEA DECORATIVA */
+
+.finanzaCard::before{
+
+content:"";
+
+position:absolute;
+
+top:0;
+
+left:0;
+
+width:100%;
+
+height:8px;
+
+background:#ff4fa3;
+
+}
+
+/* TITULO */
 
 .finanzaTitulo{
 
@@ -86,13 +119,17 @@ font-size:18px;
 
 color:#666;
 
-margin-bottom:15px;
+margin-bottom:18px;
+
+font-weight:bold;
 
 }
 
+/* VALOR */
+
 .finanzaValor{
 
-font-size:35px;
+font-size:38px;
 
 font-weight:bold;
 
@@ -102,7 +139,7 @@ word-break:break-word;
 
 }
 
-/* DINERO REAL */
+/* CARD DINERO REAL */
 
 .realCard{
 
@@ -112,7 +149,11 @@ background:linear-gradient(
 #ff2e93
 );
 
-color:white;
+}
+
+.realCard::before{
+
+background:white;
 
 }
 
@@ -130,9 +171,77 @@ font-size:45px;
 
 }
 
+/* TABLA GASTOS */
+
+.tablaGastos{
+
+margin-top:40px;
+
+}
+
+.tablaContainer{
+
+background:white;
+
+padding:25px;
+
+border-radius:25px;
+
+box-shadow:0 8px 25px rgba(255,79,163,0.15);
+
+overflow-x:auto;
+
+}
+
+table{
+
+width:100%;
+
+border-collapse:collapse;
+
+min-width:400px;
+
+}
+
+th{
+
+background:#ff4fa3;
+
+color:white;
+
+padding:15px;
+
+font-size:15px;
+
+}
+
+td{
+
+padding:14px;
+
+text-align:center;
+
+border-bottom:1px solid #ffd3e8;
+
+}
+
+tr:hover{
+
+background:#fff3f8;
+
+}
+
 /* RESPONSIVE */
 
 @media(max-width:768px){
+
+.topFinanzas{
+
+flex-direction:column;
+
+align-items:stretch;
+
+}
 
 .finanzaValor{
 
@@ -143,6 +252,21 @@ font-size:28px;
 .realCard .finanzaValor{
 
 font-size:35px;
+
+}
+
+.formFinanzas{
+
+padding:25px;
+
+}
+
+.btnGuardar,
+.btnVolver{
+
+width:100%;
+
+text-align:center;
 
 }
 
