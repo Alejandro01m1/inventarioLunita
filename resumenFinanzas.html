@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Finanzas</title>
+
+<link rel="stylesheet"
+      href="css/global.css">
+
+<link rel="stylesheet"
+      href="css/styleFinanzas.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="topFinanzas">
+
+<h1>Finanzas</h1>
+
+<a href="menu.html"
+   class="btnVolver">
+
+⬅ Volver
+
+</a>
+
+</div>
+
+<div class="formFinanzas">
+
+<form id="formFinanzas">
+
+<div class="grupo">
+
+<label>Gastos de envío</label>
+
+<input type="number"
+       id="gastosEnvio"
+       step="0.01"
+       required>
+
+</div>
+
+<div class="grupo">
+
+<label>Dinero que deben</label>
+
+<input type="number"
+       id="dineroDeben"
+       step="0.01"
+       required>
+
+</div>
+
+<button type="submit"
+        class="btnGuardar">
+
+Guardar Información
+
+</button>
+
+</form>
+
+</div>
+
+<div class="finanzasGrid">
+
+<div class="finanzaCard">
+
+<div class="finanzaTitulo">
+
+💰 Total Vendido
+
+</div>
+
+<div class="finanzaValor"
+     id="totalVendido">
+
+$0
+
+</div>
+
+</div>
+
+<div class="finanzaCard">
+
+<div class="finanzaTitulo">
+
+🚚 Gastos de Envío
+
+</div>
+
+<div class="finanzaValor"
+     id="totalEnvios">
+
+$0
+
+</div>
+
+</div>
+
+<div class="finanzaCard">
+
+<div class="finanzaTitulo">
+
+⏳ Dinero Pendiente
+
+</div>
+
+<div class="finanzaValor"
+     id="totalDeben">
+
+$0
+
+</div>
+
+</div>
+
+<div class="finanzaCard realCard">
+
+<div class="finanzaTitulo">
+
+📈 Dinero Real
+
+</div>
+
+<div class="finanzaValor"
+     id="dineroReal">
+
+$0
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script type="module"
+        src="js/finanzas.js"></script>
+
+</body>
+
+</html>
