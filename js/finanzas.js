@@ -9,7 +9,7 @@ addDoc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 /* =========================
-DINERO PENDIENTE
+FORMULARIO
 ========================= */
 
 const formFinanzas =
@@ -19,14 +19,32 @@ formFinanzas.addEventListener("submit", async (e)=>{
 
 e.preventDefault();
 
+/* INPUTS */
+
+const dineroInput =
+document.getElementById("dineroDeben");
+
+const envioInput =
+document.getElementById("envio");
+
+/* VALORES */
+
 const dineroDeben =
-Number(document.getElementById("dineroDeben").value);
+Number(dineroInput.value || 0);
+
+const envio =
+Number(envioInput.value || 0);
+
+/* GUARDAR */
 
 await addDoc(collection(db,"finanzas"),{
 
-dineroDeben
+dineroDeben,
+envio
 
 });
+
+/* RECARGAR */
 
 location.reload();
 
@@ -45,15 +63,17 @@ articulosSnapshot.forEach((doc)=>{
 
 const articulo = doc.data();
 
-totalVendido += Number(articulo.ingresos || 0);
+totalVendido +=
+Number(articulo.ingresos || 0);
 
 });
 
 /* =========================
-DINERO PENDIENTE
+DINERO PENDIENTE + ENVIO
 ========================= */
 
 let totalDeben = 0;
+let totalEnvio = 0;
 
 const finanzasSnapshot =
 await getDocs(collection(db,"finanzas"));
@@ -62,12 +82,16 @@ finanzasSnapshot.forEach((doc)=>{
 
 const datos = doc.data();
 
-totalDeben += Number(datos.dineroDeben || 0);
+totalDeben +=
+Number(datos.dineroDeben || 0);
+
+totalEnvio +=
+Number(datos.envio || 0);
 
 });
 
 /* =========================
-TOTAL GASTOS
+OTROS GASTOS
 ========================= */
 
 let totalGastos = 0;
@@ -79,7 +103,8 @@ gastosSnapshot.forEach((doc)=>{
 
 const gasto = doc.data();
 
-totalGastos += Number(gasto.valorGasto || 0);
+totalGastos +=
+Number(gasto.valorGasto || 0);
 
 });
 
@@ -88,15 +113,22 @@ DINERO REAL
 ========================= */
 
 const dineroReal =
-totalVendido - totalGastos - totalDeben;
+totalVendido
+- totalEnvio
+- totalGastos
+- totalDeben;
 
 /* =========================
-MOSTRAR
+MOSTRAR DATOS
 ========================= */
 
 document.getElementById("totalVendido")
 .innerText =
 "$" + totalVendido;
+
+document.getElementById("gastosEnvio")
+.innerText =
+"$" + totalEnvio;
 
 document.getElementById("totalGastos")
 .innerText =
